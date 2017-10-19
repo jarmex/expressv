@@ -1,0 +1,38 @@
+{
+  "name": "expressv",
+  "version": "1.0.0",
+  "description": "express generator application",
+  "main": "./bin/express-gen.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "handlebars"
+  ],
+  "bin": {
+    "expressv": "./bin/express-gen.js"
+  },
+  "preferGlobal": true,
+  "repository": "jarmex/expressv",
+  "author": "James Amo <james.amo@sisghana.com>",
+  "license": "MIT",
+  "dependencies": {
+    "hbs": "^4.0.1",
+    "inquirer": "^3.3.0"
+  },
+  "engines": {
+    "node": ">= 8.6.0"
+  },
+  "files": [
+    "LICENSE",
+    "bin/",
+    "templates/"
+  ],
+  "devDependencies": {
+    "eslint": "^4.9.0",
+    "eslint-config-equimper": "^2.2.1",
+    "eslint-config-prettier": "^2.6.0",
+    "prettier": "^1.7.4"
+  }
+}

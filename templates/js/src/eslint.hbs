@@ -1,0 +1,18 @@
+{{#with data}}
+{{#if prettier}}
+{ 
+  "extends": [ "equimper", "prettier" ] 
+}
+{{/if}}
+{{#if airbnb}}
+{ 
+  "extends": 
+  "airbnb-base" 
+}
+{{/if}}
+{{#if standard}}
+{
+  "extends": "standard"
+}
+{{/if}}
+{{/with}}

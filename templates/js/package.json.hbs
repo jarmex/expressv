@@ -1,0 +1,93 @@
+{{#with data}}
+{
+    "name": "{{projectname}}",
+    "version": "{{version}}",
+    "description": "{{description}}",
+    "private": true,
+    "scripts": {
+      "start": "node ./bin/server",
+      "dev": "DEBUG={{projectname}}:* NODE_ENV=development nodemon --exec babel-node bin/server",
+      "prettier": "prettier --single-quote --print-width 80 --trailing-comma all --write '/src/**/*.js'"
+    },
+    "dependencies": { 
+        {{#if bcryptjs}}
+        "bcryptjs": "^2.4.3",
+        {{/if}}
+        "body-parser": "~1.18.2",
+        {{#if connectflash}}
+        "connect-flash": "^0.1.1",
+        {{/if}}
+        "cookie-parser": "~1.4.3", 
+        {{#if cookiesession}}
+        "cookie-session": "^1.3.1",
+        {{/if}}
+        "debug": "~2.6.9",
+        "express": "~4.15.5",
+        "{{view.name}}": "{{view.version}}",
+        {{#if helmet}}
+        "helmet": "^3.8.2",
+        {{/if}} 
+        {{#if jsonwebtoken}}
+        "jsonwebtoken": "^7.4.3",
+        {{/if}}
+        "morgan": "~1.9.0",
+        {{#if multer}}
+        "multer": "^1.3.0",
+        {{/if}}
+        {{#if mysql}}
+        "mysql2": "^1.4.2",
+        {{/if}}
+        {{#if postgres}}
+        "pg": "^7.3.0",
+        "pg-hstore": "^2.3.2",
+        {{/if}}
+        {{#if passport}}
+        "passport": "^0.4.0",
+        "passport-local": "^1.0.0",
+        {{/if}}
+        {{#if sequelize}}
+        "sequelize": "^4.13.8",
+        "sequelize-cli": "^3.0.0",
+        {{/if}}
+        {{#if sqlite}}
+        "sqlite3" : "^3.1.13",
+        {{/if}}
+        {{#if mssql}}
+        "tedious" : "^2.0.0",
+        {{/if}}
+        {{#if cssengine}}
+        "{{css.name}}": "{{css.version}}",
+        {{/if}}
+        "serve-favicon": "~2.4.5"
+    },
+    "devDependencies": {
+      {{#if babel}}
+      "babel-cli": "^6.26.0",
+      "babel-core": "^6.26.0",
+      "babel-plugin-transform-object-rest-spread": "^6.26.0",
+      "babel-preset-env": "^1.6.0",
+      {{/if}}
+      "eslint": "^4.9.0",
+      {{#if standard}}
+      "eslint-config-standard": "^10.2.1",
+      "eslint-plugin-import": "^2.8.0",
+      "eslint-plugin-node": "^5.2.0",
+      "eslint-plugin-promise": "^3.6.0",
+      "eslint-plugin-standard": "^3.0.1",
+      {{/if}}
+      {{#if airbnb}}
+      "eslint-config-airbnb-base" : "^12.1.0",
+      "eslint-plugin-import": "^2.7.0",
+      {{/if}}
+      {{#if prettier}}
+      "eslint-config-equimper": "^2.2.1",
+      "eslint-config-prettier": "^2.6.0",
+      {{/if}}
+      {{#if prettier}}
+      "prettier": "^1.7.4",
+      {{/if}}
+      "nodemon": "^1.12.1"
+    }
+  }
+  
+{{/with}}
