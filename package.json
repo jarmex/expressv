@@ -1,6 +1,6 @@
 {
   "name": "expressv",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "express generator application",
   "main": "./bin/express-gen.js",
   "scripts": {
