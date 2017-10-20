@@ -47,8 +47,8 @@ const  questions = [
         type : 'list',
         name : 'database',
         message : 'Select the database for sequelize',
-        choices : [ 'mysql', 'sqlite', 'postgres','mssql'],
-        default : 'mysql',
+        choices : [ 'mysql', 'sqlite', 'postgres','mssql', 'none'],
+        default : 'none',
         when : (answer) => (answer.dependencies.indexOf('sequelize') > -1)
         
     },{
@@ -90,6 +90,19 @@ const  questions = [
         message : 'Add .gitignore',
         default : true
     }
+    // ,{
+    //     type : 'list',
+    //     name : 'cssframework',
+    //     message : 'Select CSS responsive framework ',
+    //     default : 'materialize',
+    //     choices : [
+    //         'bootstrap',
+    //         'bulma',
+    //         'materialize',
+    //         'none'
+    //     ],
+    //     when : (ans) =>  ans.cssengine === 'css' && (ans.engine === 'hbs' || ans.engine === 'ejs')
+    // }
 ];
 
 

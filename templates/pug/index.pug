@@ -1,5 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div.container
+    div.center-align
+      img(src='/images/express.png')
+      h2 Welcome to #{title}
+    br
+    hr
+    br
+    div.center-align
+      p <em>To get started edit the</em> view/home.hbs <em>or</em> src/controllers/homeCtrl.js <em>and save and reload</em>

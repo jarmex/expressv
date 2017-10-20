@@ -38,6 +38,10 @@ module.exports = async(appdata) => {
         await helpers.createFolders(appdata, isHandlebars);
 
          
+        // copy yhe images
+        const imgeresp = await helpers.copyImage(`img/express.png`,`${appdata.path}/public/images/express.png`);
+        console.log(imgeresp);
+        
         // copy the css engine to the respective folder
         const ext = helpers.getCssEngine(appdata.cssengine);
         const cpCss = await helpers.copyTemplate(`css/style.${ext}`,`${appdata.path}/public/css/style.${ext}`);
@@ -50,8 +54,14 @@ module.exports = async(appdata) => {
             console.log(routeResult);
         });
 
-        // copy the controller files to the destination folder
-        const controllerFiles = ['homeCtrl.js', 'index.js', 'usersCtrl.js'];
+        /* copy the controller files to the destination folder */
+        // copy home controller
+        const homeController =  helpers.loadTemplate('js/src/controllers/homeCtrl.js');
+        homeController.locals.hbs = isHandlebars;
+        const homeresp = await helpers.write(`${appdata.path}/src/controllers/homeCtrl.js`, homeController.render());
+        console.log(homeresp);
+
+        const controllerFiles = ['index.js', 'usersCtrl.js'];
         controllerFiles.forEach(async (file)=>{
             const srcresult = await helpers.copyTemplate(`js/src/controllers/${file}`,`${appdata.path}/src/controllers/${file}`);
             console.log(srcresult);
@@ -164,6 +174,12 @@ module.exports = async(appdata) => {
         const esldata = await helpers.write(`${appdata.path}/.eslintrc`, eslconfig.render(), MODE_0755);
         console.log(esldata);
        
+
+        // passport jwt
+        if (appdata.passportjwt){
+            const seqresponse = await helpers.copyTemplate('js/src/library/passport.js',`${appdata.path}/src/library/passport.js`);
+            console.log(seqresponse);
+        }
 
         // print the complete
         complete(appdata.projectname, appdata.path);

@@ -7,4 +7,4 @@ class UsersController {
     } 
 }
 
-module.exports = new HomeController();
+module.exports = new UsersController();

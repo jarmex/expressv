@@ -98,7 +98,25 @@ const write = async(mpath, str, mode) => {
 }
 module.exports.write = write;
 
+/**
+ * copy images from a source to destination
+ * @param {string} from the source file
+ * @param {string} to the destination file
+ */
+module.exports.copyImage = (from, to)=>{
+    const fromfile = path.join(__dirname, '..', 'templates', from);
+    const tofile = path.resolve(to); 
+    const readStream = fs.createReadStream(fromfile);
+    readStream.once('error', (err)=>{
+        throw err;
+    });
+    readStream.once('end',()=>{
+        // console.log(`   \x1b[36mcreate\x1b[0m : ${to}`); //eslint-disable-line
+    });
 
+    readStream.pipe(fs.createWriteStream(tofile));
+    return `   \x1b[36mcreate\x1b[0m : ${to}`;
+}
 /**
  * Copy file from template directory.
  * @param {string} from 
@@ -164,6 +182,7 @@ module.exports.packagejson = (data) =>{
         version : viewEngineVersion[viewengine]
     };
 
+    // process csss engine
     const cssengine = {
         less : ['less-middleware','~2.2.1','lessMiddleware',`lessMiddleware(path.join(__dirname, 'public'))`],
         compass : ['node-compass','0.2.3','compass',`compass({ mode: 'expanded' })`],
@@ -185,9 +204,15 @@ module.exports.packagejson = (data) =>{
     // eslint
     ret[data.eslint] = true;
 
+    // add passportjwt
+    ret.passportjwt = data.passportjwt;
+
     // babel
     ret.babel = true;
 
+    // process database engine
+    ret[data.database] = true;
+    // return the json object
     return ret;
 }
 
@@ -202,7 +227,7 @@ module.exports.createFolders = (appdata,isHandlebars) => {
         '/src' 
     ];
 
-    const levelTwoFolders = ['/public/js', '/public/images', '/public/css','/src/controllers', '/src/models'];
+    const levelTwoFolders = ['/public/js', '/public/images', '/public/css','/src/controllers', '/src/models', '/src/library'];
     if (isHandlebars){
         levelTwoFolders.push('/views/partials')
     }
@@ -211,6 +236,8 @@ module.exports.createFolders = (appdata,isHandlebars) => {
         const createFolderResult = await mkdir(`${appdata.path}${folder}`);
         console.log(createFolderResult); // eslint-disable-line
     });
+
+    // create subfolders
     levelTwoFolders.forEach( async (folder)=>{
         const createFolderResult = await mkdir(`${appdata.path}${folder}`);
         console.log(createFolderResult); // eslint-disable-line

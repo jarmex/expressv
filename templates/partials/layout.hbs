@@ -4,14 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{#if title}} {{title}} {{else}} Document | {{/if}} </title>
-    {{#> styletag}} 
-        <link rel='stylesheet' href='/css/style.css' />
-    {{/styletag}}
+   
+    <title>{{#if title}} {{title}} {{else}} Express | {{/if}} </title>
+    <link rel="stylesheet" href="/css/style.css">
+     {{#> headertag}}
+     {{!-- use this to include specific header tag for individual pages --}}
+     {{/headertag}}
 </head>
 <body>
-    {{#> bodycontent}} content goes here {{/bodycontent}}
-    {{#> footerpage}} {{!-- Nothing goes here --}} {{/footerpage}}
-    {{!-- Additional script to be loadeded --}} {{#> scripttag}} {{>scripts}} {{/scripttag}}
+     {{#> bodycontent}} 
+     {{!-- the body content of the html goes here --}}
+     {{/bodycontent}}
+
+    <footer>
+        {{#> footertag}} 
+            {{!-- put the default footer tag here --}}
+        {{/footertag}}
+    </footer>
+    
+     {{#> scripttag}} 
+     {{!-- use the script tag to load specific script per page --}}
+     {{/scripttag}}
 </body>
 </html>

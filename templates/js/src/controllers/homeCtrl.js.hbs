@@ -1,0 +1,16 @@
+
+class HomeController {
+    {{#if hbs}}
+    homepage(req, res){
+        // render using the partial layout 
+        res.render('home', { layout: '', title : 'Express'});
+    }
+    
+    {{else}}
+    homepage(req, res){
+        res.render('index', { title : 'Express'});
+    } 
+    {{/if}}
+}
+
+module.exports = new HomeController();

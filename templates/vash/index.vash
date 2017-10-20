@@ -1,6 +1,17 @@
 @html.extend('layout', function(model) {
   @html.block('content', function(model) {
-    <h1>@model.title</h1>
-    <p>Welcome to @model.title</p>
+    <div class="container">
+      <div class="center-align">
+          <img src="/images/express.png" alt="express" ><br>
+          <h2>Welcome to @model.title</h2>
+      </div>
+      <br>
+      <hr>
+      <br>
+      <div class="center-align">
+          <p><b>To get started edit the </b>view/home.hbs <b>or </b>src/controllers/homeCtrl.js <b>and save and reload</b></p>
+      </div>
+    </div>
   })
 })
+
